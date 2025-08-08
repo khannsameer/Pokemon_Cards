@@ -10,6 +10,7 @@ import {
   NavbarLink,
   NavbarToggle,
 } from "flowbite-react";
+import { Link } from "react-router-dom";
 
 export function Component() {
   return (
@@ -20,13 +21,17 @@ export function Component() {
     >
       <div className="w-full px-12 flex flex-wrap items-center justify-between">
         {/* Logo */}
-        <NavbarBrand href="https://flowbite-react.com">
+        <NavbarBrand
+          as={Link}
+          to="/"
+          className="flex items-center cursor-pointer"
+        >
           <img
             src="/logo1.ico"
             className="mr-3 h-15 sm:h-18"
             alt="Pokemon Logo"
           />
-          <span className="self-center whitespace-nowrap text-4xl font-pokemon items-center">
+          <span className="whitespace-nowrap text-4xl font-pokemon text-black">
             Pokedex
           </span>
         </NavbarBrand>
@@ -55,8 +60,8 @@ export function Component() {
         </div>
 
         {/* Nav Links */}
-        <NavbarCollapse className="md:ml-250">
-          <NavbarLink href="#" className="text-xl font-light">
+        <NavbarCollapse className="md:ml-auto">
+          <NavbarLink href="#" className="text-white text-xl font-medium">
             Pokemon
           </NavbarLink>
         </NavbarCollapse>
