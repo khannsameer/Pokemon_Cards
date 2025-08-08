@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap");
+
 @import "tailwindcss";
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
@@ -9,4 +11,8 @@
 
 .font-pokemon {
   font-family: "PokemonHollow", sans-serif;
+}
+
+@theme {
+  --font-custom: "Mozilla Headline", sans-serif;
 }

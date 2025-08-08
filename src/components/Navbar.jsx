@@ -61,7 +61,7 @@ export function Component() {
 
         {/* Nav Links */}
         <NavbarCollapse className="md:ml-auto">
-          <NavbarLink href="#" className="text-white text-xl font-medium">
+          <NavbarLink href="#" className="text-white text-xl font-custom">
             Pokemon
           </NavbarLink>
         </NavbarCollapse>
