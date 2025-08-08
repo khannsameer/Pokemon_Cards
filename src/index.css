@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+
+@font-face {
+  font-family: "PokemonHollow";
+  src: url("/Pokemon Hollow.ttf") format("truetype");
+}
+
+.font-pokemon {
+  font-family: "PokemonHollow", sans-serif;
+}
