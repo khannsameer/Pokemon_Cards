@@ -44,7 +44,7 @@ export function Component() {
             label={
               <Avatar
                 alt="User settings"
-                img="/logo2.png"
+                img="/user.png"
                 rounded
                 className="w-12 h-12"
               />
