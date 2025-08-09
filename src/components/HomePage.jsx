@@ -3,6 +3,7 @@ import Searchbar from "../components/Searchbar";
 import PokemonCard from "./PokemonCard";
 import { Spinner } from "flowbite-react";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 const HomePage = () => {
   const [pokemon, setPokemon] = useState([]);
@@ -81,7 +82,7 @@ const HomePage = () => {
 
           {/* Pagination Buttons */}
           {/* Pagination */}
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center mt-6 mb-6">
             <nav className="inline-flex items-center space-x-1">
               {/* Prev Button */}
               <button
@@ -134,6 +135,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
