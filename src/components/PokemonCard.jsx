@@ -2,7 +2,7 @@ import React from "react";
 
 const PokemonCard = ({ pokemonData }) => {
   return (
-    <div className="bg-slate-200 mt-10 rounded-2xl p-4 border border-white shadow-md hover:shadow-xl transition-shadow duration-300 w-64 ml-12 gap-3">
+    <div className="bg-slate-200 mt-10 rounded-2xl p-4 border border-white shadow-md hover:shadow-xl transition-shadow duration-300 gap-3 w-full max-w-xs mx-auto">
       {/* Image */}
       <div className="flex justify-center">
         <img
@@ -22,18 +22,18 @@ const PokemonCard = ({ pokemonData }) => {
 
       {/* Types */}
       {/* <div className="flex gap-2 mt-3">
-        {types.map((type, index) => (
+        {pokemonData.types.map((type, index) => (
           <span
             key={index}
             className={`px-3 py-1 rounded-lg text-white text-sm ${
-              type.toLowerCase() === "grass"
+              pokemonData.type.toLowerCase() === "grass"
                 ? "bg-green-500"
-                : type.toLowerCase() === "poison"
+                : pokemonData.type.toLowerCase() === "poison"
                 ? "bg-purple-400"
                 : "bg-gray-400"
             }`}
           >
-            {type}
+            {pokemonData.type}
           </span>
         ))}
       </div> */}

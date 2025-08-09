@@ -64,9 +64,9 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="px-4">
-        <div>
-          <ul className="grid grid-cols-4 justify-center items-center gap-1.5">
+      <div className="px-6">
+        <div className="max-w-7xl mx-auto">
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {pokemon.map((curPokemon) => (
               <PokemonCard key={curPokemon.id} pokemonData={curPokemon} />
             ))}
