@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap");
 
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
 
@@ -22,4 +23,13 @@ body {
   padding: 0;
   min-height: 100vh;
   background: linear-gradient(180deg, #ffffff, #eeeeee, #cccccc);
+}
+
+@layer base {
+  html {
+    @apply transition-colors duration-300;
+  }
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  }
 }

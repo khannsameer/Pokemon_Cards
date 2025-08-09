@@ -12,7 +12,7 @@ const PokemonCard = ({ pokemonData }) => {
     fairy: "bg-pink-400",
     fighting: "bg-orange-600",
     psychic: "bg-pink-500",
-    rock: "bg-yellow-800", // brownish
+    rock: "bg-yellow-800",
     steel: "bg-slate-500",
     ghost: "bg-violet-500",
     ice: "bg-cyan-400",
@@ -25,7 +25,7 @@ const PokemonCard = ({ pokemonData }) => {
         <img
           src={pokemonData.sprites.other.dream_world.front_default}
           alt={pokemonData.name}
-          className="w-50 h-50 object-contain"
+          className="w-50 h-50 object-contain transition-transform duration-300 ease-in-out hover:scale-105 "
         />
       </div>
 
@@ -35,7 +35,9 @@ const PokemonCard = ({ pokemonData }) => {
       </p>
 
       {/* Name */}
-      <h2 className="text-2xl font-bold">{pokemonData.name}</h2>
+      <h2 className="text-2xl font-bold dark:text-slate-950">
+        {pokemonData.name}
+      </h2>
 
       {/* Types */}
 

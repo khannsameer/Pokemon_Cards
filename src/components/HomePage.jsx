@@ -82,7 +82,7 @@ const HomePage = () => {
 
           {/* Pagination Buttons */}
           {/* Pagination */}
-          <div className="flex justify-center mt-6 mb-6">
+          <div className="flex justify-center mt-6 mb-6 dark:text-slate-950">
             <nav className="inline-flex items-center space-x-1">
               {/* Prev Button */}
               <button
