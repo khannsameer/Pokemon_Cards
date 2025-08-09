@@ -17,7 +17,7 @@ export function Component() {
     <Navbar
       fluid
       rounded
-      className="bg-gradient-to-r from-teal-300 via-indigo-500 to-purple-400"
+      className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-teal-300 via-indigo-500 to-purple-400"
     >
       <div className="w-full px-12 flex flex-wrap items-center justify-between">
         {/* Logo */}

@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 
 const Searchbar = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full mt-6 px-4">
+    <div className="flex flex-col items-center justify-center w-full mt-30 px-4">
       {/* Heading */}
       <h2 className="font-custom text-2xl mb-3 text-gray-800">
         Search by name or ID:
