@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Component as MyNavbar } from "./components/Navbar";
+import HomePage from "./components/HomePage";
 
 // Import your pages here
 // import HomePage from "./pages/HomePage"; // main page
@@ -10,8 +11,7 @@ function App() {
     <>
       <MyNavbar />
       <Routes>
-        {/* <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} /> */}
+        <Route path="/" element={<HomePage />} />
         {/* Add more routes here */}
       </Routes>
     </>
