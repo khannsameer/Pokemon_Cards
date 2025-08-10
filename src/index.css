@@ -33,3 +33,47 @@
     @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
   }
 }
+
+/* @keyframes holo {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.animate-holo {
+  background-size: 200% 200%;
+  animation: holo 8s linear infinite;
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px var(--type-color), inset 0 0 15px var(--type-color);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--type-color), inset 0 0 25px var(--type-color);
+  }
+}
+
+.animate-borderGlow {
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes typeShimmer {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.4);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.animate-typeShimmer {
+  animation: typeShimmer 2s ease-in-out infinite;
+} */

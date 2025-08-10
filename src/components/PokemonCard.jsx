@@ -1,7 +1,27 @@
 import React from "react";
 
 const PokemonCard = ({ pokemonData }) => {
-  const typeColors = {
+  // For glow effects
+  const glowColors = {
+    grass: "#22c55e",
+    poison: "#a78bfa",
+    fire: "#f97316",
+    water: "#3b82f6",
+    flying: "linear-gradient(to right, #60a5fa, #9ca3af)",
+    electric: "#facc15",
+    ground: "linear-gradient(to right, #facc15, #854d0e)",
+    fairy: "#f472b6",
+    fighting: "#ea580c",
+    psychic: "#ec4899",
+    rock: "#854d0e",
+    steel: "#64748b",
+    ghost: "#8b5cf6",
+    ice: "#22d3ee",
+    bug: "#15803d",
+  };
+
+  // For badge backgrounds
+  const badgeColors = {
     grass: "bg-green-500",
     poison: "bg-purple-400",
     fire: "bg-orange-500",
@@ -18,33 +38,51 @@ const PokemonCard = ({ pokemonData }) => {
     ice: "bg-cyan-400",
     bug: "bg-green-600",
   };
+
   return (
-    <div className="bg-slate-200 dark:bg-gray-800 mt-10 rounded-2xl p-4 border border-white dark:border-gray-700 shadow-md hover:shadow-xl transition-shadow duration-300 gap-3 w-full max-w-xs mx-auto text-gray-900 dark:text-gray-100">
+    <div
+      className="relative mt-10 p-5 rounded-2xl w-full max-w-xs mx-auto bg-gradient-to-br from-gray-100 via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-black border border-gray-300 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-[0_0_30px_var(--type-color)] transition-all duration-300 text-gray-900 dark:text-gray-100 group"
+      style={{
+        "--type-color": glowColors[pokemonData.types[0].type.name] || "#6b7280",
+      }}
+    >
+      {/* Animated overlay */}
+      <div className="absolute inset-0 bg-[url('/holo-texture.png')] opacity-20 mix-blend-overlay animate-holo" />
+
+      {/* Neon border */}
+      <div
+        className="absolute inset-0 rounded-2xl border-2 border-transparent animate-borderGlow"
+        style={{
+          borderImage: `linear-gradient(45deg, var(--type-color), transparent) 1`,
+        }}
+      />
+
       {/* Image */}
-      <div className="flex justify-center">
+      <div className="flex justify-center relative z-10">
         <img
           src={pokemonData.sprites.other.dream_world.front_default}
           alt={pokemonData.name}
-          className="w-50 h-50 object-contain transition-transform duration-300 ease-in-out hover:scale-105 "
+          className="w-40 h-40 object-contain drop-shadow-[0_0_15px_var(--type-color)] group-hover:scale-110 transition-transform duration-300"
         />
       </div>
 
       {/* ID */}
-      <p className="text-gray-600 text-sm mt-2">
+      <p className="text-gray-400 text-sm mt-2 relative z-10 font-mono">
         #{pokemonData.id.toString().padStart(4, "0")}
       </p>
 
       {/* Name */}
-      <h2 className="text-2xl font-bold ">{pokemonData.name}</h2>
+      <h2 className="text-2xl font-extrabold capitalize relative z-10 tracking-wide">
+        {pokemonData.name}
+      </h2>
 
       {/* Types */}
-
-      <div className="flex gap-2 mt-3 flex-wrap">
+      <div className="flex gap-2 mt-3 flex-wrap relative z-10">
         {pokemonData.types.map((t, index) => (
           <span
             key={index}
-            className={`px-3 py-1 rounded-lg text-white text-sm ${
-              typeColors[t.type.name] || "bg-gray-400"
+            className={`px-3 py-1 rounded-lg text-white text-sm shadow-md ${
+              badgeColors[t.type.name] || "bg-gray-500"
             }`}
           >
             {t.type.name}
