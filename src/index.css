@@ -18,12 +18,12 @@
   --font-custom: "Mozilla Headline", sans-serif;
 }
 
-body {
+/* body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
   background: linear-gradient(180deg, #ffffff, #eeeeee, #cccccc);
-}
+} */
 
 @layer base {
   html {

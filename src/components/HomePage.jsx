@@ -72,7 +72,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="px-6">
+      <div className="px-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
         <div className="max-w-7xl mx-auto">
           <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {currentCards.map((curPokemon) => (
@@ -82,7 +82,7 @@ const HomePage = () => {
 
           {/* Pagination Buttons */}
           {/* Pagination */}
-          <div className="flex justify-center mt-6 mb-6 dark:text-slate-950">
+          <div className="flex justify-center mt-6 mb-6 ">
             <nav className="inline-flex items-center space-x-1">
               {/* Prev Button */}
               <button
@@ -91,7 +91,7 @@ const HomePage = () => {
                 className={`px-3 py-1 rounded ${
                   currentPage === 1
                     ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    : "bg-gray-100 hover:bg-gray-200"
+                    : "bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
                 }`}
               >
                 Prev
@@ -110,7 +110,7 @@ const HomePage = () => {
                     className={`px-3 py-1 rounded ${
                       currentPage === page
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-100 hover:bg-gray-200"
+                        : "bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
                     }`}
                   >
                     {page}
@@ -126,7 +126,7 @@ const HomePage = () => {
                 className={`px-3 py-1 rounded ${
                   currentPage === totalPages
                     ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    : "bg-gray-100 hover:bg-gray-200"
+                    : "bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
                 }`}
               >
                 Next

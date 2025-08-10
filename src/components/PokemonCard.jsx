@@ -19,7 +19,7 @@ const PokemonCard = ({ pokemonData }) => {
     bug: "bg-green-600",
   };
   return (
-    <div className="bg-slate-200 mt-10 rounded-2xl p-4 border border-white shadow-md hover:shadow-xl transition-shadow duration-300 gap-3 w-full max-w-xs mx-auto">
+    <div className="bg-slate-200 dark:bg-gray-800 mt-10 rounded-2xl p-4 border border-white dark:border-gray-700 shadow-md hover:shadow-xl transition-shadow duration-300 gap-3 w-full max-w-xs mx-auto text-gray-900 dark:text-gray-100">
       {/* Image */}
       <div className="flex justify-center">
         <img
@@ -35,9 +35,7 @@ const PokemonCard = ({ pokemonData }) => {
       </p>
 
       {/* Name */}
-      <h2 className="text-2xl font-bold dark:text-slate-950">
-        {pokemonData.name}
-      </h2>
+      <h2 className="text-2xl font-bold ">{pokemonData.name}</h2>
 
       {/* Types */}
 

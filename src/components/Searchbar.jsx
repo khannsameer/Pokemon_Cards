@@ -5,7 +5,7 @@ const Searchbar = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full mt-30 px-4">
       {/* Heading */}
-      <h2 className="font-custom text-2xl mb-3 text-gray-800 dark:text-slate-900">
+      <h2 className="font-custom text-2xl mb-3 text-gray-800 dark:text-gray-100">
         Search by name or ID:
       </h2>
 
@@ -18,9 +18,7 @@ const Searchbar = () => {
         <input
           type="text"
           placeholder="E.g. Pikachu"
-          className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 shadow-sm 
-          focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent
-          transition duration-200 text-lg font-custom dark:text-slate-900"
+          className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 dark:border-gray-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition duration-200 text-lg font-custom"
         />
       </div>
     </div>
