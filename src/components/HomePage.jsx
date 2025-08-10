@@ -9,9 +9,10 @@ const HomePage = () => {
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1); // Track page
-  const cardsPerPage = 12; // Show only 12 cards at a time
+  const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState(""); // <-- moved here
 
+  const cardsPerPage = 12;
   const API = "https://pokeapi.co/api/v2/pokemon?limit=1302";
 
   const chunkArray = (arr, size) => {
@@ -25,7 +26,7 @@ const HomePage = () => {
   const fetchPokemon = async () => {
     try {
       const { data } = await axios.get(API);
-      const chunks = chunkArray(data.results, 50); // Fetch in batches of 50
+      const chunks = chunkArray(data.results, 50);
       let allData = [];
 
       for (const chunk of chunks) {
@@ -37,7 +38,6 @@ const HomePage = () => {
         );
         allData = [...allData, ...detailedData];
       }
-      console.log(allData);
 
       setPokemon(allData);
       setLoading(false);
@@ -51,6 +51,13 @@ const HomePage = () => {
     fetchPokemon();
   }, []);
 
+  // Filtering based on search
+  const filteredPokemon = pokemon.filter(
+    (curPokemon) =>
+      curPokemon.name.toLowerCase().includes(search.toLowerCase()) ||
+      curPokemon.id.toString() === search.trim() // allow search by ID
+  );
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -63,28 +70,28 @@ const HomePage = () => {
     return <div>{error.message}</div>;
   }
 
-  // Pagination logic
+  // Pagination logic on filtered data
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = pokemon.slice(indexOfFirstCard, indexOfLastCard);
-
-  const totalPages = Math.ceil(pokemon.length / cardsPerPage);
+  const currentCards = filteredPokemon.slice(indexOfFirstCard, indexOfLastCard);
+  const totalPages = Math.ceil(filteredPokemon.length / cardsPerPage);
 
   return (
     <>
       <div className="px-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
         <div className="max-w-7xl mx-auto">
-          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {/* Pass search state + setter to Searchbar */}
+          <Searchbar search={search} setSearch={setSearch} />
+
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {currentCards.map((curPokemon) => (
               <PokemonCard key={curPokemon.id} pokemonData={curPokemon} />
             ))}
           </ul>
 
-          {/* Pagination Buttons */}
           {/* Pagination */}
-          <div className="flex justify-center mt-6 mb-6 ">
+          <div className="flex justify-center mt-6 mb-6">
             <nav className="inline-flex items-center space-x-1">
-              {/* Prev Button */}
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
@@ -97,11 +104,10 @@ const HomePage = () => {
                 Prev
               </button>
 
-              {/* Page Numbers */}
               {Array.from({ length: totalPages }, (_, i) => i + 1)
                 .slice(
-                  Math.max(0, currentPage - 3), // start range
-                  Math.min(totalPages, currentPage + 2) // end range
+                  Math.max(0, currentPage - 3),
+                  Math.min(totalPages, currentPage + 2)
                 )
                 .map((page) => (
                   <button
@@ -117,7 +123,6 @@ const HomePage = () => {
                   </button>
                 ))}
 
-              {/* Next Button */}
               <button
                 onClick={() =>
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
