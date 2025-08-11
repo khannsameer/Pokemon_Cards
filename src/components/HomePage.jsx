@@ -13,7 +13,7 @@ const HomePage = () => {
   const [search, setSearch] = useState("");
 
   const cardsPerPage = 12;
-  const API = "https://pokeapi.co/api/v2/pokemon?limit=1302";
+  const API = "https://pokeapi.co/api/v2/pokemon?limit=1302&offset=0";
 
   const chunkArray = (arr, size) => {
     return arr.reduce((chunks, item, i) => {
@@ -25,6 +25,8 @@ const HomePage = () => {
 
   const fetchPokemon = async () => {
     try {
+      setError(null); // clear previous error
+      setLoading(true);
       const { data } = await axios.get(API);
       const chunks = chunkArray(data.results, 50);
       let allData = [];
@@ -67,7 +69,19 @@ const HomePage = () => {
   }
 
   if (error) {
-    return <div>{error.message}</div>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen text-center">
+        <p className="text-red-500 font-semibold text-lg">
+          {error.message || "Something went wrong!"}
+        </p>
+        <button
+          onClick={fetchPokemon}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Retry
+        </button>
+      </div>
+    );
   }
 
   // Pagination logic on filtered data
