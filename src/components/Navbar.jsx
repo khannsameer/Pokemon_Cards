@@ -26,11 +26,10 @@ export function Component() {
     <Navbar
       fluid
       rounded
-      className="fixed top-0 left-0 w-full z-50 
-      bg-gradient-to-r from-teal-300 via-indigo-500 to-purple-400 
+      className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-teal-300 via-indigo-500 to-purple-400 
       dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
     >
-      <div className="w-full px-10 flex flex-wrap items-center justify-between">
+      <div className="w-full px-25 flex flex-wrap items-center justify-between">
         {/* Logo */}
         <NavbarBrand
           as={Link}

@@ -7,10 +7,8 @@ function App() {
     <>
       <MyNavbar />
       <main className="pt-12">
-        {/* Pushes content below fixed navbar */}
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* Add more routes here */}
         </Routes>
       </main>
     </>

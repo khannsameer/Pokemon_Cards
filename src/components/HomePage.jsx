@@ -10,7 +10,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState(""); // <-- moved here
+  const [search, setSearch] = useState("");
 
   const cardsPerPage = 12;
   const API = "https://pokeapi.co/api/v2/pokemon?limit=1302";
@@ -38,7 +38,7 @@ const HomePage = () => {
         );
         allData = [...allData, ...detailedData];
       }
-
+      console.log(allData);
       setPokemon(allData);
       setLoading(false);
     } catch (error) {

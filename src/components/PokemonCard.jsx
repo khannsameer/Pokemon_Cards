@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import PokemonModal from "../components/PokemonModal";
 
 const PokemonCard = ({ pokemonData }) => {
+  // const [openModal, setOpenModal] = useState(false);
+
   // For glow effects
   const glowColors = {
     grass: "#22c55e",
@@ -65,6 +68,7 @@ const PokemonCard = ({ pokemonData }) => {
           className="w-40 h-40 object-contain drop-shadow-[0_0_15px_var(--type-color)] group-hover:scale-110 transition-transform duration-300"
         />
       </div>
+      {/* <PokemonModal /> */}
 
       {/* ID */}
       <p className="text-gray-400 text-sm mt-2 relative z-10 font-mono">
