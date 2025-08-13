@@ -34,6 +34,17 @@
   }
 }
 
+/* Light mode gradient */
+/* :root {
+  --card-bg-start: #f8fafc; slate-50
+  --card-bg-end: #e2e8f0; slate-200
+} */
+
+/* Dark mode gradient */
+/* .dark { */
+/* --card-bg-start: #1e293b; slate-800 */
+/* --card-bg-end: #0f172a; slate-900 */
+/* } */
 /* @keyframes holo {
   0% {
     background-position: 0% 0%;

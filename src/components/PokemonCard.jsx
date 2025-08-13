@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import PokemonModal from "../components/PokemonModal";
+import { useDisclosure } from "@heroui/react";
 
 const PokemonCard = ({ pokemonData }) => {
-  // const [openModal, setOpenModal] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // const openModal = () => {
+  //   setIsModal(true);
+  // };
 
   // For glow effects
   const glowColors = {
@@ -43,57 +49,72 @@ const PokemonCard = ({ pokemonData }) => {
   };
 
   return (
-    <div
-      className="relative mt-10 p-5 rounded-2xl w-full max-w-xs mx-auto bg-gradient-to-br from-gray-100 via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-black border border-gray-300 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-[0_0_30px_var(--type-color)] transition-all duration-300 text-gray-900 dark:text-gray-100 group"
-      style={{
-        "--type-color": glowColors[pokemonData.types[0].type.name] || "#6b7280",
-      }}
-    >
-      {/* Animated overlay */}
-      <div className="absolute inset-0 bg-[url('/holo-texture.png')] opacity-20 mix-blend-overlay animate-holo" />
-
-      {/* Neon border */}
+    <>
       <div
-        className="absolute inset-0 rounded-2xl border-2 border-transparent animate-borderGlow"
+        className="relative mt-10 p-5 rounded-2xl w-full max-w-xs mx-auto bg-gradient-to-br from-gray-100 via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-black border border-gray-300 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-[0_0_30px_var(--type-color)] transition-all duration-300 text-gray-900 dark:text-gray-100 group"
         style={{
-          borderImage: `linear-gradient(45deg, var(--type-color), transparent) 1`,
+          "--type-color":
+            glowColors[pokemonData.types[0].type.name] || "#6b7280",
         }}
-      />
+        onClick={onOpen}
+      >
+        {/* Animated overlay */}
+        <div className="absolute inset-0 bg-[url('/holo-texture.png')] opacity-20 mix-blend-overlay animate-holo" />
 
-      {/* Image */}
-      <div className="flex justify-center relative z-10">
-        <img
-          src={pokemonData.sprites.other.dream_world.front_default}
-          alt={pokemonData.name}
-          className="w-40 h-40 object-contain drop-shadow-[0_0_15px_var(--type-color)] group-hover:scale-110 transition-transform duration-300"
+        {/* Neon border */}
+        <div
+          className="absolute inset-0 rounded-2xl border-2 border-transparent animate-borderGlow"
+          style={{
+            borderImage: `linear-gradient(45deg, var(--type-color), transparent) 1`,
+          }}
         />
+
+        {/* Image */}
+        <div className="flex justify-center relative z-10">
+          <img
+            src={pokemonData.sprites.other.dream_world.front_default}
+            alt={pokemonData.name}
+            className="w-40 h-40 object-contain drop-shadow-[0_0_15px_var(--type-color)] group-hover:scale-110 transition-transform duration-300"
+            // onClick={() => setIsModalOpen(true)}
+          />
+        </div>
+        {/* Modal */}
+        {/* <PokemonModal
+        pokemonData={pokemonData}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      /> */}
+
+        {/* ID */}
+        <p className="text-gray-400 text-sm mt-2 relative z-10 font-mono">
+          #{pokemonData.id.toString().padStart(4, "0")}
+        </p>
+
+        {/* Name */}
+        <h2 className="text-2xl font-extrabold capitalize relative z-10 tracking-wide">
+          {pokemonData.name}
+        </h2>
+
+        {/* Types */}
+        <div className="flex gap-2 mt-3 flex-wrap relative z-10">
+          {pokemonData.types.map((t, index) => (
+            <span
+              key={index}
+              className={`px-3 py-1 rounded-lg text-white text-sm shadow-md ${
+                badgeColors[t.type.name] || "bg-gray-500"
+              }`}
+            >
+              {t.type.name}
+            </span>
+          ))}
+        </div>
       </div>
-      {/* <PokemonModal /> */}
-
-      {/* ID */}
-      <p className="text-gray-400 text-sm mt-2 relative z-10 font-mono">
-        #{pokemonData.id.toString().padStart(4, "0")}
-      </p>
-
-      {/* Name */}
-      <h2 className="text-2xl font-extrabold capitalize relative z-10 tracking-wide">
-        {pokemonData.name}
-      </h2>
-
-      {/* Types */}
-      <div className="flex gap-2 mt-3 flex-wrap relative z-10">
-        {pokemonData.types.map((t, index) => (
-          <span
-            key={index}
-            className={`px-3 py-1 rounded-lg text-white text-sm shadow-md ${
-              badgeColors[t.type.name] || "bg-gray-500"
-            }`}
-          >
-            {t.type.name}
-          </span>
-        ))}
-      </div>
-    </div>
+      <PokemonModal
+        pokemonData={pokemonData}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
+    </>
   );
 };
 
