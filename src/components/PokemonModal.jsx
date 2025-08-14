@@ -36,21 +36,21 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
         },
       }}
       classNames={{
-        backdrop: "backdrop-blur-md bg-black/30",
+        backdrop:
+          "backdrop-blur-md bg-black/30 flex items-center justify-center",
       }}
       className="bg-transparent shadow-none"
     >
       <ModalContent>
         {(onClose) => (
           <div
-            className="relative rounded-2xl p-6 w-[450px] flex flex-col items-center border-4 shadow-lg 
-             bg-slate-200 dark:bg-slate-900 "
+            className="relative rounded-2xl p-3 sm:p-6 w-[90vw] sm:w-[450px] flex flex-col items-center border-4 shadow-lg bg-slate-200 dark:bg-slate-900 max-h-[90vh] scale-[0.9] sm:scale-100 translate-x-4"
             style={{
               boxShadow: `0 0 20px var(--type-${mainType})`,
             }}
           >
             {/* Pokémon ID Badge */}
-            <span className="absolute top-4 left-4 bg-red-500 text-white font-bold rounded-full px-3 py-1 text-sm shadow-lg">
+            <span className="absolute top-3 left-3 bg-red-500 text-white font-bold rounded-full px-2 py-1 text-sm shadow-lg">
               #{pokemonData.id.toString().padStart(4, "0")}
             </span>
 
@@ -58,7 +58,7 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
             <img
               src={pokemonData.sprites.other.dream_world.front_default}
               alt={pokemonData.name}
-              className="w-50 h-50 object-contain drop-shadow-[0_0_20px_var(--type-color)]"
+              className="w-40 sm:w-50 h-auto object-contain drop-shadow-[0_0_20px_var(--type-color)]"
             />
 
             {/* Name & Type */}
