@@ -44,9 +44,9 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
       <ModalContent>
         {(onClose) => (
           <div
-            className="relative rounded-2xl p-6 w-[450px] flex flex-col items-center border-4 shadow-lg"
+            className="relative rounded-2xl p-6 w-[450px] flex flex-col items-center border-4 shadow-lg 
+             bg-slate-200 dark:bg-slate-900 "
             style={{
-              background: "linear-gradient(145deg, #1e293b, #0f172a)",
               boxShadow: `0 0 20px var(--type-${mainType})`,
             }}
           >
@@ -63,7 +63,7 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
             />
 
             {/* Name & Type */}
-            <h1 className="mt-3 text-2xl font-bold capitalize text-white">
+            <h1 className="mt-3 text-2xl font-bold capitalize text-gray-900 dark:text-white">
               {pokemonData.name}
             </h1>
             <div className="flex gap-2 mt-2">
@@ -83,7 +83,7 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
             <div className="mt-5 w-full">
               {pokemonData.stats.map((stat, i) => (
                 <div key={i} className="mb-2">
-                  <div className="flex justify-between text-gray-200 text-xs">
+                  <div className="flex justify-between text-gray-900 dark:text-gray-200 text-xs font-medium">
                     <span>{stat.stat.name.toUpperCase()}</span>
                     <span>{stat.base_stat}</span>
                   </div>
