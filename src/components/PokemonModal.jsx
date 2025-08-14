@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, ModalContent, Button } from "@heroui/react";
 
 const badgeColors = {
@@ -22,6 +22,30 @@ const badgeColors = {
 const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
   const mainType = pokemonData.types[0].type.name;
   const progressColor = badgeColors[mainType] || "bg-gray-400";
+  const [weaknesses, setWeaknesses] = useState([]);
+  const [showMore, setShowMore] = useState(false);
+
+  // Fetch weaknesses from type API
+  useEffect(() => {
+    const fetchWeaknesses = async () => {
+      try {
+        let weaknessSet = new Set();
+        for (let t of pokemonData.types) {
+          const res = await fetch(t.type.url);
+          const typeData = await res.json();
+          typeData.damage_relations.double_damage_from.forEach((w) =>
+            weaknessSet.add(w.name)
+          );
+        }
+        setWeaknesses(Array.from(weaknessSet));
+      } catch (err) {
+        console.error("Error fetching weaknesses:", err);
+      }
+    };
+    if (pokemonData?.types) {
+      fetchWeaknesses();
+    }
+  }, [pokemonData]);
 
   return (
     <Modal
@@ -44,12 +68,12 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
       <ModalContent>
         {(onClose) => (
           <div
-            className="relative rounded-2xl p-3 sm:p-6 w-[90vw] sm:w-[450px] flex flex-col items-center border-4 shadow-lg bg-slate-200 dark:bg-slate-900 max-h-[90vh] scale-[0.9] sm:scale-100 translate-x-4"
+            className="relative rounded-2xl p-3 sm:p-6 w-[90vw] sm:w-[450px] flex flex-col items-center border-4 shadow-lg bg-slate-200 dark:bg-slate-900 translate-x-4"
             style={{
               boxShadow: `0 0 20px var(--type-${mainType})`,
             }}
           >
-            {/* Pokémon ID Badge */}
+            {/* Pokémon ID */}
             <span className="absolute top-3 left-3 bg-red-500 text-white font-bold rounded-full px-2 py-1 text-sm shadow-lg">
               #{pokemonData.id.toString().padStart(4, "0")}
             </span>
@@ -58,7 +82,7 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
             <img
               src={pokemonData.sprites.other.dream_world.front_default}
               alt={pokemonData.name}
-              className="w-40 sm:w-50 h-auto object-contain drop-shadow-[0_0_20px_var(--type-color)]"
+              className="w-40 h-auto object-contain drop-shadow-[0_0_20px_var(--type-color)]"
             />
 
             {/* Name & Type */}
@@ -98,34 +122,43 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
               ))}
             </div>
 
-            {/* Extra Info */}
-            <div className="mt-4 w-full text-gray-900 dark:text-gray-200 text-sm">
-              <p>
-                <strong>Height:</strong> {pokemonData.height}
-              </p>
-              <p>
-                <strong>Weight:</strong> {pokemonData.weight}
-              </p>
-              <p>
-                <strong>Moves:</strong>{" "}
-                {pokemonData.moves
-                  .slice(0, 5)
-                  .map((m) => m.move.name)
-                  .join(", ")}
-              </p>
-            </div>
+            {/* More Info */}
+            {showMore && (
+              <div className="mt-4 w-full text-gray-900 dark:text-gray-200 text-sm space-y-1">
+                <p>
+                  <strong>Height:</strong> {pokemonData.height}
+                </p>
+                <p>
+                  <strong>Weight:</strong> {pokemonData.weight}
+                </p>
+                <p>
+                  <strong>Moves:</strong>{" "}
+                  {pokemonData.moves
+                    .slice(0, 5)
+                    .map((m) => m.move.name)
+                    .join(", ")}
+                </p>
+                {weaknesses.length > 0 && (
+                  <p>
+                    <strong>Weaknesses:</strong> {weaknesses.join(", ")}
+                  </p>
+                )}
+              </div>
+            )}
 
             {/* Buttons */}
             <div className="flex gap-4 mt-6">
               <Button
                 onPress={onClose}
-                className="px-5 py-2 rounded-lg font-semibold bg-red-500 text-white shadow-md hover:bg-red-600 hover:shadow-lg active:scale-95 transition duration-200"
+                className="px-5 py-2 rounded-lg font-semibold bg-red-500 text-white shadow-md hover:bg-red-600"
               >
                 Close
               </Button>
-
-              <Button className="px-5 py-2 rounded-lg font-semibold bg-blue-500 text-white shadow-md hover:bg-blue-600 hover:shadow-lg active:scale-95 transition duration-200">
-                More Info
+              <Button
+                onPress={() => setShowMore((prev) => !prev)}
+                className="px-5 py-2 rounded-lg font-semibold bg-blue-500 text-white shadow-md hover:bg-blue-600"
+              >
+                {showMore ? "Hide Info" : "More Info"}
               </Button>
             </div>
           </div>
