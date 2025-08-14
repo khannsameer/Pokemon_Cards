@@ -40,7 +40,7 @@ const HomePage = () => {
         );
         allData = [...allData, ...detailedData];
       }
-      console.log(allData);
+      // console.log(allData);
       setPokemon(allData);
       setLoading(false);
     } catch (error) {

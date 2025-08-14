@@ -20,7 +20,6 @@ const badgeColors = {
 };
 
 const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
-  // Take the first Pokémon type to decide the bar color
   const mainType = pokemonData.types[0].type.name;
   const progressColor = badgeColors[mainType] || "bg-gray-400";
 
@@ -91,12 +90,29 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
                     <div
                       className={`h-2 rounded-full ${progressColor}`}
                       style={{
-                        width: `${Math.min(stat.base_stat, 100)}%`, // cap at 100%
+                        width: `${Math.min(stat.base_stat, 100)}%`,
                       }}
                     ></div>
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Extra Info */}
+            <div className="mt-4 w-full text-gray-900 dark:text-gray-200 text-sm">
+              <p>
+                <strong>Height:</strong> {pokemonData.height}
+              </p>
+              <p>
+                <strong>Weight:</strong> {pokemonData.weight}
+              </p>
+              <p>
+                <strong>Moves:</strong>{" "}
+                {pokemonData.moves
+                  .slice(0, 5)
+                  .map((m) => m.move.name)
+                  .join(", ")}
+              </p>
             </div>
 
             {/* Buttons */}

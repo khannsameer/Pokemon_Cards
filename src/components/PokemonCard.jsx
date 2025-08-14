@@ -3,7 +3,6 @@ import PokemonModal from "../components/PokemonModal";
 import { useDisclosure } from "@heroui/react";
 
 const PokemonCard = ({ pokemonData }) => {
-  // const [isModalOpen, setIsModalOpen] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // const openModal = () => {

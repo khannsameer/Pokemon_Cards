@@ -46,11 +46,10 @@ export function Component() {
           </span>
         </NavbarBrand>
 
-        {/* Right side */}
         <div className="flex items-center gap-3 mt-2">
           {/* Desktop-only Pokemon link */}
           <Link
-            to="#"
+            to="/"
             className="hidden md:block text-white text-lg sm:text-xl font-custom dark:text-yellow-300"
           >
             Pokemon
