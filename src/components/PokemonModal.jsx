@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-} from "@heroui/react";
+import { Modal, ModalContent, Button } from "@heroui/react";
 
 const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
   return (
@@ -14,8 +7,6 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
       backdrop="blur"
-      // size="lg"
-
       placement="center"
       motionProps={{
         variants: {
@@ -23,12 +14,15 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
           exit: { scale: 0.9, opacity: 0 },
         },
       }}
+      classNames={{
+        backdrop: "backdrop-blur-md bg-black/30", // Extra blur + tint
+      }}
       className="bg-transparent shadow-none"
     >
       <ModalContent>
         {(onClose) => (
           <div
-            className={`relative rounded-2xl p-6 w-[350px] flex flex-col items-center border-4 shadow-lg`}
+            className="relative rounded-2xl p-6 w-[450px] flex flex-col items-center border-4 shadow-lg"
             style={{
               background: "linear-gradient(145deg, #1e293b, #0f172a)",
               boxShadow: `0 0 20px var(--type-${pokemonData.types[0].type.name})`,
@@ -43,7 +37,7 @@ const PokemonModal = ({ pokemonData, isOpen, onClose }) => {
             <img
               src={pokemonData.sprites.other.dream_world.front_default}
               alt={pokemonData.name}
-              className="w-40 h-40 object-contain drop-shadow-[0_0_20px_var(--type-color)]"
+              className="w-50 h-50 object-contain drop-shadow-[0_0_20px_var(--type-color)]"
             />
 
             {/* Name & Type */}
